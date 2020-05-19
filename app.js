@@ -1,9 +1,10 @@
 var express = require("express"),
-app = express(),
-mongoose = require("mongoose"),
-methodOverride =require("method-override"),
-indexRoutes = require("./routes/index"),
-articleRoutes = require('./routes/articles');
+    app = express(),
+    mongoose = require("mongoose"),
+    methodOverride =require("method-override"),
+    indexRoutes = require("./routes/index"),
+    commentRoutes = require("./routes/comments"),
+    articleRoutes = require('./routes/articles');
 
 var url = "mongodb://localhost/kingekeoms";
 mongoose.connect(url, {
@@ -22,6 +23,7 @@ app.use(methodOverride("_method"));
 
 app.use(indexRoutes);
 app.use( "/articles", articleRoutes);
+app.use( "/articles/:id/comments", commentRoutes);
 
 app.listen(3000, function(){
     console.log("King-Ekeoms Server has started!");
