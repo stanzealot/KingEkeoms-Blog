@@ -1,0 +1,25 @@
+/* Font-Family: Arvo */
+
+@font-face{
+    font-family: Arvo;
+    src: url('../fonts/Arvo/Arvo-Regular.ttf')
+}
+
+/* Font-Family: Josefin Slab */
+@font-face{
+    font-family: Josefin-Slab;
+    src: url('../fonts/Josefin_Slab/JosefinSlab-Regular.ttf')
+}
+
+/* Font-Family: Roboto */
+@font-face{
+    font-family: Roboto;
+    src: url('../fonts/Roboto/Roboto-Regular.ttf')
+}
+
+/* Font-Family: Sanchez */
+@font-face{
+    font-family: Sanchez;
+    src: url('../fonts/Sanchez/Sanchez-Regular.ttf')
+}
+

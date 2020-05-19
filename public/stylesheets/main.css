@@ -1,0 +1,185 @@
+@import url('/fonts.css');
+
+html, body{
+    margin: 0%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+:root{
+    /* theme Colors */
+    --text-gray: #3f4954;
+    --text-light: #686688;
+    --bg-color: #0f0f0f;
+    --white: #ffffff;
+    --midnight:#104f55;
+    --olive-drab: #6B8E23;
+    --capuccion: #854442;
+    --snow: #FFFAFA;
+    --armor: #8dbdff;
+    /*theme Gradient color */
+    --sky: linear-gradient(120deg, #a1c4fd, #c2e9fb 100%);
+
+    /* theme font-family */
+    --Arvo: 'Arvo', cursive;
+    --Josefin-Slab: 'Josefin-Slab', cursive;
+    --Roboto: 'Josefin', cursive;
+    --Sanchez: 'Sanchez', cursive;
+
+}
+
+/* Global Classes */
+
+a{
+    text-decoration: none;
+    color: var(--text-gray);
+}
+
+ul{
+    list-style-type: none;
+
+}
+
+h1{
+    font-family: var(--Arvo);
+    font-size: 2.0rem;
+}
+
+h2{
+    font-family: var(--Arvo);
+}
+
+h3{
+    font-family: var(--Roboto);
+    font-size: 1.3rem;
+}
+
+span{
+    font-family: var(--Sanchez);
+}
+
+.container{
+    margin: 0 5rem;
+}
+
+.text-gray{
+    color: var(--text-gray);
+}
+
+p{
+    font-family: var(--Roboto);
+    color: var(--text-light);
+}
+
+
+.btn{
+    border: none;
+    border-radius: 2rem;
+    padding: 1rem 3rem;
+    font-size: 1rem;
+    font-family: var(--Arvo);
+    cursor: pointer;
+    outline: none;
+}
+
+
+
+.flex-row{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#required{
+    color: red;
+}
+
+/*==============Footer=========*/
+
+footer.footer{
+    height: 100%;
+    background: var(--bg-color);
+    position: relative;
+}
+
+footer.footer .container{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+}
+
+footer.footer .container > div{
+    flex-grow: 1;
+    flex-basis: 0;
+    padding: 3rem .9rem;
+}
+
+footer.footer .container h2{
+    color: var(--white);
+}
+
+footer.footer .newsletter .form-element{
+    background: black;
+    display: inline-block;
+}
+
+footer.footer .newsletter .form-element input{
+    padding: .5rem .7rem;
+    border: none;
+    background: transparent;
+    color: white;
+    font-family: var(--Josefin);
+    font-size: 1rem;
+    width: 74%;
+}
+
+footer.footer .newsletter .form-element span{
+    background: var(--sky);
+    padding: .5rem .7rem;
+    cursor: pointer;
+}
+
+footer.footer .instagram div > img{
+    display: inline-block; 
+    width: 25%;
+    height: 50%;
+    margin: .3rem .4rem;
+}
+
+footer.footer .follow div i{
+    color: var(--white);
+    padding: 0 .4rem;
+}
+
+footer.footer .rights{
+    justify-content: center;
+    font-family: var(--Josefin);
+}
+
+footer.footer .rights h4 a{
+    color: white;
+}
+
+footer.footer .move-up{
+    position: absolute;
+    right: 6%;
+    top: 50%;  
+}
+
+footer.footer .move-up span{
+    color: var(--olive-drab);
+}
+
+footer.footer .move-up span:hover{
+    color: var(--white);
+    cursor: pointer;
+}
+
+
+/* viewport less than or equal to 750px */
+@media only screen and (max-width: 1150px){
+
+    footer.footer .container{
+        grid-template-columns:repeat(2,1fr);
+    }
+    
+}

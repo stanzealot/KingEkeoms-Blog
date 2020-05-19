@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KingEkeoms | Articles</title>
+    <link rel="stylesheet" href="/stylesheets/nav.css">
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    <link rel="stylesheet" href="/stylesheets/articles.css">
+    <link rel="stylesheet" href="/stylesheets/all.min.css">
+</head>
+<body>
+    
+    <%- include('../partials/nav'); %>
+    
+    <main>
+        <!-- Site content -->
+        <section class="container" id="site-contents">
+            <div class="site-content">
+                     <!-- About Me -->
+                 <div class="about-me">
+                     <div class="title">
+                         <h2>About Me</h2>
+                     </div>
+                     <div class="about-me-content">
+                         <div class="about-me-image">
+                             <div class="image-background">
+                                 <img src="/images/kingekeoms.jpeg" alt="Kingekeoms" height="500px">
+                             </div>
+                             <!-- <div class="my-avatar">
+                                 <img src="./assets/Blog-post/blog2.png" alt="avatar" class="avatar">
+                             </div> -->
+                         </div>
+                         <div class="about-me-info">
+                             <h3 class="about-me-title">WELCOME to the world of KINGEKEOMS !</h3>
+                             <p>
+                                 That's not even my real name.. haha. My name is Ekeoma Isaac,
+                                 I recently obtained a B.ENG in Petroleum Engineering.
+                                 Though some poeple perceive Engineers to not have an active lifestyle...
+                                 I'm definitely here to change that stereotype..
+                           </p>
+                           <p>Engineers love having fun too, they are not nerdy as people assume they are..</p>
+                           <p>
+                              Having bagged a First Class honors Degree in Petroleum Engineering, I can boldly say
+                              I'm a lover of life and most of all a lover of people.
+                              <strong>KingEkeoms</strong> - Engineering and Lifestyle blog is a place for me to 
+                              share my thoughts and opinions on all things dealing with life as an out going Engineer 
+                              who loves to see the world and have fun while doing so.
+                           </p>
+                         </div>
+                     </div>
+                 </div>
+            
+                 <!-- Blog Post -->
+                 <div class="posts">
+                     <div class="title">
+                         <h2>Recent Posts</h2>
+                     </div>
+                     <% articles.forEach(article => { %>
+                        <div class="post-content">
+                            <div class="post-title">
+                                <h2><%= article.title %></h2>
+                                <hr>
+                            </div>
+                            <div class="post-image">
+                                <div>
+                                   <img src="/images/assets/Blog-post/blog1.png" class="img" alt="blog1">
+                               </div>
+                                <div class="post-info flex-row">
+                                     <span><i class="fas fa-user"></i>&nbsp;&nbsp;KingEkeoms</fas></span>
+                                     <span><i class="fas fa-calendar"></i>&nbsp;&nbsp;<%= article.displayDate %></span>
+                                     <span>7 comments</span>
+                                </div>
+                            </div>
+                            <div class="post-description">
+                                <div>
+                                    <p><%= article.caption %></p>
+                                   <a href="/articles/<%= article.slug %>" class="btn post-btn">Read More</a>
+                                </div>
+                            </div>
+                            <a href="/articles/<%= article.id %>/edit" class="btn btn-warn">Edit</a>
+                            <form action="/articles/<%= article.id %>?_method=DELETE" method="POST">
+                                <button type="submit" class="btn" >Delete</button>  
+                           </form>
+                        </div>
+                    <% }); %>
+                 </div>
+             </div>
+         </section>
+    </main>
+
+    <%- include('../partials/footer'); %>

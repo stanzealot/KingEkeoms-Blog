@@ -1,0 +1,170 @@
+@import url('../css/fonts.css ');
+
+html, body{
+    margin: 0%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+/* Global Classes */
+
+/*===========Blog post==========*/
+
+main section .blog-site-content{
+    display: grid;
+    grid-template-columns: 70% 30%;
+}
+
+main section .blog-post{
+    width: 100%;
+    margin-bottom: 5rem;
+}
+
+main section .blog-post > .blog-info, .blog-image, .blog-content, .blog-comments{
+    padding: 1rem 2rem;
+    position: relative;
+}
+
+/* main section .blog-post .blog-title{
+    padding: 0rem 2rem;
+} */
+
+main section .blog-post .blog-info{
+    display: flex;
+    justify-content: space-between;
+    padding: 0rem 2rem;
+}
+
+main section .blog-post .blog-image > div{
+    overflow: hidden;
+}
+
+main section .blog-post img{
+    width: 100%;
+    transition: all 1s ease;
+}
+
+main section .blog-post .blog-image img:hover{
+    transform: scale(1.2);
+}
+
+/* Comment Section */
+
+main section .blog-comments {
+    background: #f5f5f5;
+    margin: 2rem 0rem;
+}
+
+main section .blog-comments .add-comment  {
+    width: 8rem;
+    margin-bottom: 2rem;
+    padding: .5rem 1.5rem;
+    border-radius: .2rem;
+    cursor: pointer;
+    background: #449d44;
+    color: white;
+    /* display: flex;
+    justify-content: flex-end; */
+}
+
+main section .blog-comments .comment-form{
+    margin: 2rem 0rem;
+    padding: 1rem;
+}
+
+main section .blog-comments .comment-form .form-input{
+    margin-bottom: .5rem;
+}
+main section .blog-comments .comment-form .form-input input, textarea{
+    width: 50%;
+}
+
+.form-comment{
+    display: none;
+}
+
+main section .blog-comments .comment-form .comment-btn{
+    padding: .5rem 1rem;
+    background: #449d44;
+    color: white;
+    outline: none;
+    border: 2px solid white;
+}
+
+main section .blog-comments .comment{
+    margin: 1rem 0rem;
+    padding: .3rem .5rem;
+    box-shadow: 0px 0px 1px black;
+}
+
+main section .blog-comments .comment .comment-info{
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Sidebar */
+
+main section .blog-site-content > .sidebar .category-list{
+    font-family: var(--Sanchez);
+}
+
+main section .category h2{
+    padding: 2rem 0;
+}
+.blog-site-content > .sidebar .category-list .list-items{
+    display: flex;
+    justify-content: space-between;
+    background: var(--sky);
+    padding: .4rem 1rem;
+    margin: .8rem 0;
+    border-radius: 3rem;
+    width: 70%;
+}
+
+.blog-site-content > .sidebar .category-list .list-items a{
+    color: #000;
+}
+
+/* Popular Posts */
+
+.blog-site-content .sidebar .popular-blog-posts .blog-post-content{
+    padding: 1rem 2rem;
+}
+
+.blog-site-content .sidebar .popular-blog-posts h2{
+    padding-top: 4rem;
+}
+
+.blog-site-content .sidebar .popular-blog-posts .blog-post-info span{
+    margin-right: .8rem;
+}
+
+.blog-site-content .sidebar .popular-blog-posts .blog-post-info{
+    padding: .4rem .1rem;
+}
+
+.blog-site-content .sidebar .popular-blog-posts .blog-post-title a{
+    font-weight: 800;
+    font-size: 1.3rem;
+}
+
+.blog-site-content .sidebar .popular-blog-posts .blog-post-content{
+    margin-bottom: 2rem;
+}
+
+.blog-site-content .sidebar .popular-blog-posts .blog-post-content img{
+    width: 100%;
+}
+
+/* @media only screen and (max-width:1150){
+
+} */
+
+@media only screen and (max-width:750px){
+    main section .blog-site-content{
+        grid-template-columns: 100% !important;
+    }
+    .container{
+        margin: 0 2rem !important;
+    }
+}

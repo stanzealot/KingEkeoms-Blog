@@ -1,0 +1,215 @@
+/*=============Site content======*/
+
+main .site-content{
+    display: grid;
+    grid-template-columns: 30% 70%
+}
+
+
+main .title{
+    text-align: center;
+    line-height: 60px;
+    letter-spacing: .3rem;
+    font-size: 1rem;
+    background: var(--olive-drab);
+    text-transform: uppercase;
+}
+
+/*============About Me===========*/
+main .about-me-content{
+    width: 100%;
+    margin-bottom: 2rem;
+    box-shadow: 0px 0px 5px #000;
+}
+
+
+main .site-content .about-me-image > div{
+    overflow: hidden;
+}
+
+main .site-content .about-me-image .image-background  img {
+    width: 100%;
+    /* height: 70%; */
+}
+
+
+main .site-content .about-me-content > .about-me-info{
+    padding: 0 2rem;
+    text-align: center;
+    padding-bottom: 1rem;
+}
+
+
+
+/*===========Blog post / Site content==========*/
+main .posts{
+    margin-left: 20px;
+}
+
+main .post-content{
+    width: 100%;
+    margin-bottom: 2rem;
+    box-shadow: 0px 0px 5px #000;
+}
+
+main .site-content .post-content >  .post-image, .post-title, .post-description{
+    padding: 1rem 2rem;
+    position: relative;
+}
+
+main .site-content .post-content > .post-image .post-info{
+    background: var(--olive-drab);
+    padding: .8rem 1.5rem;
+    position: absolute;
+    bottom: 0%;
+    left: 30%;
+    border-radius: 3rem;
+}
+
+main .site-content > .post-image > div{
+    overflow: hidden;
+}
+
+main .site-content .post-content > .post-image .img{
+    width: 100%;
+    transition: all 1s ease;
+}
+
+main .site-content .post-content > .post-image .post-info span{
+    margin: 0 .5rem;
+}
+
+main .post-content .post-title h2{
+    text-align: center;
+    font-family: var(--Arvo);
+    font-size: 1.8rem ;
+}
+
+.site-content .post-content .post-description{
+    text-align: justify;
+    padding-bottom: 2rem;
+}
+
+.site-content .post-content .post-description div{
+    text-align: center;
+}
+
+.site-content .post-content .post-description .post-btn{
+    text-align: center;
+    border-radius: 0;
+    padding: .7rem 1.5rem;
+    margin-top: 1rem;
+    background: var(--olive-drab);
+}
+
+hr{
+    width: 100%;
+    margin: 0;
+}
+
+
+@media only screen and (max-width:750px){
+    
+    main .site-content .post-content > .post-image .post-info{
+        background: var(--white);
+        bottom: initial !important;
+        left: initial !important;
+        border-radius: 0 !important;
+    }
+
+    .btn{
+        margin: 1rem !important;
+    }
+}
+
+@media only screen and (max-width:1000px){
+    .nav .nav-menu, .nav-items{
+        /* display: flex; */
+        flex-direction: column;
+    }
+
+    .nav .toggle-collapse{
+        display: initial;
+    }
+
+    main .site-content{
+        grid-template-columns: 100% !important;
+    }
+    main .posts{
+        margin-left: 0 !important;
+    }
+}
+
+@media only screen and (max-width:750px){
+    
+    main .site-content .post-content > .post-image .post-info{
+        background: var(--white);
+        bottom: initial !important;
+        left: initial !important;
+        border-radius: 0 !important;
+    }
+
+    .btn{
+        margin: 1rem !important;
+    }
+}
+
+@media only screen and (max-width:550px){
+    .container{
+        margin: 0 1rem;
+    }
+
+    /* main section .about-me{
+        display: none;
+    } */
+
+    main section .post-content .post-info{
+        display: none;
+    }
+    main section ,.post-content .post-description{
+        padding: 0 1rem !important;
+    }
+
+    .post-btn{
+        padding: .5rem 1rem !important;
+    }
+    footer.footer .container{
+        grid-template-columns:repeat(1,1fr);
+    }
+}
+
+@media only screen and (min-height: 1000px){
+    .nav{
+        min-height: 7vh;
+    }
+}
+
+/* @media only screen and (max-width:550px){
+    .container{
+        margin: 0 1rem;
+    }
+
+    main section .about-me{
+        display: none;
+    }
+
+    main section .post-content .post-info{
+        display: none;
+    }
+    main section ,.post-content .post-description{
+        padding: 0 1rem !important;
+    }
+
+    .post-btn{
+        padding: .5rem 1rem !important;
+    }
+    footer.footer .container{
+        grid-template-columns:repeat(1,1fr);
+    }
+}
+
+@media only screen and (min-height: 1000px){
+    .nav{
+        min-height: 7vh;
+    }
+} */

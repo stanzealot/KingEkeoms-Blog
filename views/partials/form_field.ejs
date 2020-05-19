@@ -1,0 +1,21 @@
+
+<div class="form-group">
+    <label for="title">Title</label><br>
+    <input required type="text" name="title" class="form-input" id="title" value="<%= article.title %>" >
+</div>
+<div class="form-group">
+    <label for="caption">Caption</label><br>
+    <textarea name="caption" id="caption" cols="30" rows="3" resized="false" class="form-input">
+        <%= article.caption %>
+    </textarea>
+</div>
+<div class="form-group">
+    <label for="image-url">Image</label><br>
+    <input id="image-url" type="text" name="image" class="form-input">
+</div>
+<div class="form-group">
+    <label for="content">Content</label><br>
+    <textarea required name="content" id="content" cols="30" rows=30" class="form-input">
+        <%= article.content %>
+    </textarea>
+</div>

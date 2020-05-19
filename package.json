@@ -1,0 +1,29 @@
+{
+  "name": "king-ekeoms",
+  "version": "1.0.0",
+  "description": "Isaac Ekeoma's Blog",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trinityimma/KingEkeoms-Blog.git"
+  },
+  "author": "Immaculata-Mary Muoghalu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/trinityimma/KingEkeoms-Blog/issues"
+  },
+  "homepage": "https://github.com/trinityimma/KingEkeoms-Blog#readme",
+  "dependencies": {
+    "dompurify": "^2.0.11",
+    "ejs": "^3.0.2",
+    "express": "^4.17.1",
+    "jsdom": "^16.2.2",
+    "marked": "^1.0.0",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.9.10",
+    "slugify": "^1.4.0"
+  }
+}

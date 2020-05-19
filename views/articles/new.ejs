@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KingEkeoms | New Post</title>
+    <link rel="stylesheet" href="/stylesheets/new-edit.css">
+    <link rel="stylesheet" href="/stylesheets/main.css">
+</head>
+<body>
+    
+    <div class="form-container">
+       <form action="/articles" method="POST" class="form">
+            <h1>New Post</h1>
+             
+            <%- include('../partials/form_field'); %>
+
+            <a href="/articles" class="btn btn-warn">Cancel</a>
+            <button class="btn btn-green">Post</button>
+       </form>
+    </div>
+
+<%- include('../partials/footer'); %>

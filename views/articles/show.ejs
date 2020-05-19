@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KingEkeoms | Blog Post</title>
+    <link rel="stylesheet" href="/stylesheets/nav.css">
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    <link rel="stylesheet" href="/stylesheets/show.css">
+    <link rel="stylesheet" href="/stylesheets/all.min.css">
+</head>
+<body>
+
+    <%- include('../partials/nav'); %>
+
+    <main>
+
+        <!-- Site content -->
+        <section class="container">
+           <div class="blog-site-content">
+                <div class="blog-post">
+                    <div>
+                        <div class="blog-title">
+                            <h1><%= article.title %></h1>
+                        </div>
+                        <div class="blog-info">
+                            <span> By <strong>Admin</strong> </span>
+                            <span><%= article.displayDate %></span>
+                        </div>
+                        <div class="blog-image">
+                            <div>
+                                <img src="/images/assets/Blog-post/blog1.png" class="img" alt="blog1">
+                            </div>
+                        </div>
+                        <div>
+                            
+                        </div>
+                        <div class="blog-content" >
+                           <%- article.sanitizedHtml %>
+                        </div>
+                    </div>
+                    <div class="blog-comments">
+                        <h4>Comments on this article</h4>
+                        <div class="add-comment">Add a comment</div>
+                        <div class="comment-form form-comment">
+                            <form action="/articles/<%= article.slug %>" method="POST">
+                                <div class="form-input"> 
+                                    <label for="name" >Name <span id="required">*</span> </label><br>
+                                    <input id="name" type="text" name="comment[username]">
+                                </div>
+                                <div class="form-input">
+                                    <label for="email">Email (optional)</label><br>
+                                    <input id="email" type="email" name="comment[email]">
+                                </div>
+                                <div class="form-input">
+                                    <label for="comment">Comment <span id="required">*</span> </label><br>
+                                    <textarea name="comment[comment]" id="comment" ></textarea>
+                                </div>
+                                <input type="submit" value="Post comment" class="comment-btn">
+                            </form>
+                        </div>
+                        <!-- <a href="#" class="show-all-comment">Show all comments</a> -->
+                        <% article.comments.forEach(comment => { %>
+                            <div class="comment">
+                                <div class="comment-info">
+                                    <span><strong><%= comment.username %></strong></span>
+                                    <span><%= comment.createdAt.toLocaleDateString() %></span>
+                                </div>
+                                <p><%= comment.comment %></p>
+                            </div>
+                        <% }); %>
+                    </div>
+                </div>
+                    
+                <aside class="sidebar"> 
+                    <div class="category">
+                        <h2>Category</h2>
+                        <ul class="category-list">
+                            <li class="list-items">
+                            <a href="#">Engineering</a>
+                            <span>(05)</span>
+                            </li>
+                            <li class="list-items">
+                            <a href="#">Lifestyle</a>
+                            <span>(02)</span>
+                            </li>
+                            <li class="list-items">
+                            <a href="#">Travel</a>
+                            <span>(07)</span>
+                            </li>
+                            <li class="list-items">
+                            <a href="#">Shopping</a>
+                            <span>(01)</span>
+                            </li>
+                            <li class="list-items">
+                            <a href="#">Food</a>
+                            <span>(08)</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="popular-blog-posts">
+                        <h2>Popular Posts</h2>
+                        <div class="blog-post-content">
+                            <div class="post-image">
+                                <div>
+                                    <img src="/images/assets/popular-post/m-blog-1.jpg" class="img" alt="blog1">
+                                </div>
+                                <div class="blog-post-info flex-row">
+                                    <span><i class="fas fa-calendar-alt text-gray"></i>&nbsp;&nbsp;January 21, 2019</span>
+                                    <span>12 Comments</span>
+                                </div>
+                            </div>
+                            <div class="blog-post-title">
+                                <a href="#">New data recording sytem to better analyse road accidents</a>
+                            </div>   
+                        </div>
+                        <div class="blog-post-content">
+                            <div class="post-image">
+                                <div>
+                                    <img src="/images/assets/popular-post/m-blog-2.jpg" class="img" alt="blog1">
+                                </div>
+                                <div class="blog-post-info flex-row">
+                                    <span><i class="fas fa-calendar-alt text-gray"></i>&nbsp;&nbsp;January 21, 2019</span>
+                                    <span>12 Comments</span>
+                                </div>
+                            </div>
+                        <div class="blog-post-title">
+                            <a href="#">New data recording sytem to better analyse road accidents</a>
+                        </div>   
+                        </div>
+                        <div class="blog-post-content">
+                            <div class="post-image">
+                                <div>
+                                    <img src="/images/assets/popular-post/m-blog-3.jpg" class="img" alt="blog1">
+                                </div>
+                                <div class="blog-post-info flex-row">
+                                    <span><i class="fas fa-calendar-alt text-gray"></i>&nbsp;&nbsp;January 21, 2019</span>
+                                    <span>12 Comments</span>
+                                </div>
+                        </div>
+                        <div class="blog-post-title">
+                            <a href="#">New data recording sytem to better analyse road accidents</a>
+                        </div>   
+                        </div>
+                    </div>
+                </aside>
+           </div> 
+        </section>
+    </main>
+
+   <%- include('../partials/footer'); %>
