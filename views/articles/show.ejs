@@ -43,7 +43,7 @@
                         <h4>Comments on this article</h4>
                         <div class="add-comment">Add a comment</div>
                         <div class="comment-form form-comment">
-                            <form action="/articles/<%= article.slug %>" method="POST">
+                            <form action="/articles/<%=article.slug%>/comments" method="POST">
                                 <div class="form-input"> 
                                     <label for="name" >Name <span id="required">*</span> </label><br>
                                     <input id="name" type="text" name="comment[username]">

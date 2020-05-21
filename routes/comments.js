@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router({mergeParams: true});
 var Article = require("../models/article");
 var Comment = require("../models/comment");
-var middleware = require("../middleware"); //("../middleware/index.js");
+// var middleware = require("../middleware"); //("../middleware/index.js");
 
 // Add a new comment to an article
 router.post("/", function(res, req) {
@@ -31,7 +31,7 @@ router.post("/", function(res, req) {
  });
 
 // edit comment route
-router.get("/:comment_id/edit", middleware.checkCommentOwnership, function(req, res){
+router.get("/:comment_id/edit", function(req, res){
     Comment.findById(req.params.comment_id, function(err, foundComment){
         if(err){
             res.redirect("back");
