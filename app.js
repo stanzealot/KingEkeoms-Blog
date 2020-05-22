@@ -23,7 +23,7 @@ app.use(methodOverride("_method"));
 
 app.use(indexRoutes);
 app.use( "/articles", articleRoutes);
-app.use( "/articles/:id/comments", commentRoutes);
+app.use( "/articles/comments/:articleSlug", commentRoutes);
 
 app.listen(3000, function(){
     console.log("King-Ekeoms Server has started!");

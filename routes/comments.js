@@ -3,16 +3,18 @@ var router = express.Router({mergeParams: true});
 var Article = require("../models/article");
 var Comment = require("../models/comment");
 var middleware = require("../middleware/middleware"); //("../middleware/index.js");
+// var middleware = require("../middleware"); //("../middleware/index.js");
 
 // Add a new comment to an article
-router.post("/", function(res, req) {
-    Article.findById(req.params.id, function(err, article){
+router.post("/", function(req, res) {
+    console.log(req.body);
+    Article.findOne({slug: req.params.articleSlug}, function(err, article){
         if(err){
             console.log(err);
             redirect("/articles/" + req.params.slug);
         } else {
             //Create new comment
-            Comment.create(req.body.comment, function(err, comment){
+            Comment.create(req.body, function(err, comment){
                 if(err){
                     console.log(err);
                 } else {
@@ -21,9 +23,9 @@ router.post("/", function(res, req) {
                     // connect new comment to article
                     article.comments.push(comment);
                     article.save();
-                    console.log(article);
+                    //console.log(article);
                     //redirect to article show page
-                    res.redirect("article/" + article.slug);
+                    res.redirect("/articles/" + article.slug);
                 }
             });  
         }

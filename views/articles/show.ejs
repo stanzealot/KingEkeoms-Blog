@@ -43,18 +43,18 @@
                         <h4>Comments on this article</h4>
                         <div class="add-comment">Add a comment</div>
                         <div class="comment-form form-comment">
-                            <form action="/articles/<%= article.slug %>" method="POST">
+                            <form action="/articles/comments/<%=article.slug%>" method="POST">
                                 <div class="form-input"> 
                                     <label for="name" >Name <span id="required">*</span> </label><br>
-                                    <input id="name" type="text" name="comment[username]">
+                                    <input id="name" type="text" name="username">
                                 </div>
                                 <div class="form-input">
                                     <label for="email">Email (optional)</label><br>
-                                    <input id="email" type="email" name="comment[email]">
+                                    <input id="email" type="email" name="email">
                                 </div>
                                 <div class="form-input">
                                     <label for="comment">Comment <span id="required">*</span> </label><br>
-                                    <textarea name="comment[comment]" id="comment" ></textarea>
+                                    <textarea name="comment" id="comment" ></textarea>
                                 </div>
                                 <input type="submit" value="Post comment" class="comment-btn">
                             </form>

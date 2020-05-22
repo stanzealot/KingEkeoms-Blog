@@ -39,7 +39,7 @@ router.get("/:slug", function(req, res){
             console.log(err);
         } else {
             //render show template with that campground
-            console.log(foundArticle);
+            //console.log(foundArticle);
             res.render("articles/show", {article: foundArticle});
         }
     });
