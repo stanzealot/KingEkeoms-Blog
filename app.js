@@ -6,7 +6,7 @@ var express = require("express"),
     commentRoutes = require("./routes/comments"),
     articleRoutes = require('./routes/articles');
 
-var url = "mongodb://localhost/kingekeoms";
+var url = "mongodb://steve:skoobybi0la@ds123725.mlab.com:23725/alc";
 mongoose.connect(url, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
