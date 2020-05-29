@@ -29,7 +29,7 @@
                         </div>
                         <div class="blog-image">
                             <div>
-                                <img src="/images/assets/Blog-post/blog1.png" class="img" alt="blog1">
+                                <img src="<%= article.image" class="img" alt="articl-image">
                             </div>
                         </div>
                         <div>
@@ -43,18 +43,18 @@
                         <h4>Comments on this article</h4>
                         <div class="add-comment">Add a comment</div>
                         <div class="comment-form form-comment">
-                            <form action="/articles/comments/<%=article.slug%>" method="POST">
+                            <form action="/articles/<%= article.slug %>/comments" method="POST">
                                 <div class="form-input"> 
                                     <label for="name" >Name <span id="required">*</span> </label><br>
-                                    <input id="name" type="text" name="username">
+                                    <input id="name" type="text" name="username" required value="<%= article.username %>">
                                 </div>
                                 <div class="form-input">
                                     <label for="email">Email (optional)</label><br>
-                                    <input id="email" type="email" name="email">
+                                    <input id="email" type="email" name="email" value="<%= article.email %>">
                                 </div>
                                 <div class="form-input">
                                     <label for="comment">Comment <span id="required">*</span> </label><br>
-                                    <textarea name="comment" id="comment" ></textarea>
+                                    <textarea name="comment" id="comment" required ><%= comment.comment %></textarea>
                                 </div>
                                 <input type="submit" value="Post comment" class="comment-btn">
                             </form>
@@ -64,9 +64,13 @@
                             <div class="comment">
                                 <div class="comment-info">
                                     <span><strong><%= comment.username %></strong></span>
-                                    <span><%= comment.createdAt.toLocaleDateString() %></span>
+                                    <span><%= moment(comment.createdAt).fromNow() %></span>                          
                                 </div>
                                 <p><%= comment.comment %></p>
+                                <a href="/articles/<%= article.slug %>/comments/<%= comment.id %>/edit" class="show-btn edit-btn">Edit</a>
+                                <form class="delete-form" action="/articles/<%= article.slug %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                                    <input type="submit" value="Delete" class="show-btn  delete-btn">
+                                </form> 
                             </div>
                         <% }); %>
                     </div>

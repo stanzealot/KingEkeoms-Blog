@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 var express = require("express"),
     app = express(),
     mongoose = require("mongoose"),
@@ -6,7 +8,7 @@ var express = require("express"),
     commentRoutes = require("./routes/comments"),
     articleRoutes = require('./routes/articles');
 
-var url = "mongodb://steve:skoobybi0la@ds123725.mlab.com:23725/alc";
+var url = "mongodb://localhost/kingekeoms";
 mongoose.connect(url, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -19,11 +21,12 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
+app.locals.moment = require("moment");
 
 
 app.use(indexRoutes);
 app.use( "/articles", articleRoutes);
-app.use( "/articles/comments/:articleSlug", commentRoutes);
+app.use( "/articles/:articleSlug/comments", commentRoutes);
 
 app.listen(3000, function(){
     console.log("King-Ekeoms Server has started!");

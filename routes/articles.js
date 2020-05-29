@@ -1,17 +1,39 @@
 var express = require("express"),
 router = express.Router(),
-Article = require("../models/article");
-Comment = require("../models/comment");
+Article = require("../models/article"),
+Comment = require("../models/comment"),
+multer = require("multer");
+
+var storage = multer.diskStorage({
+  filename: function(req, file, callback) {
+    callback(null, Date.now() + file.originalname);
+  }
+});
+var imageFilter = function (req, file, cb) {
+    // accept image files only
+    if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/i)) {
+        return cb(new Error('Only .jpg, jpeg, png and gif file types are allowed!'), false);
+    }
+    cb(null, true);
+};
+var upload = multer({ storage: storage, fileFilter: imageFilter})
+
+var cloudinary = require('cloudinary').v2;
+cloudinary.config({ 
+  cloud_name: 'immaculata-mary', 
+  api_key: process.env.CLOUDINARY_API_KEY, 
+  api_secret: process.env.CLOUDINARY_API_SECRET
+});
 
 //index article routes
 router.get("/", async (req,res) => {
-    await Article.find({}, (err, allArticles) => {
-        if(err){
-            console.log(err);
-        } else {
-            res.render("articles/index", { articles: allArticles, page: "Articles"});
-        }
-    })
+    try {
+        let allArticles = await Article.find({}).sort({createdAt: 'desc'});
+        res.render("articles/index", { articles: allArticles, page: "Articles"})
+    } catch (e) {
+        console.log(e.message)
+        res.redirect("back");
+    }
 });
 
 // new article route
@@ -20,19 +42,38 @@ router.get("/new", function(req,res){
 });
 
 // add new post to db
-router.post("/", async (req, res, next) => {
+router.post("/", upload.single('image'),  (req, res, next) => {
     req.article = new Article();
-    console.log(req.article);
     next();
 }, saveArticleAndRedirect("new"));
 
-
+// router.post("/", upload.single("image"), async (req, res)=>{
+//     try {
+//         var result = await cloudinary.uploader.upload(req.file.pathe);
+//         // add cloudinary url for the image to the campground object under image property
+//         article.image = result.secure_url;
+//         // add image's public_id to campground object
+//         article.imageId = result.public_id;
+//         article.title = req.body.title;
+//         article.caption = req.body.caption;
+//         article.content = req.body.content;
+//     } catch (e) {
+//         console.log(e.message);
+//         //res.redirect("back");
+//         res.render("articles/" + path, {article: article});
+//     }
+// })
 // Show article route
-router.get("/:slug", function(req, res){
-    // const article = await Article.findOne({ slug: req.params.slug }).populate('comments').exec();
-    // console.log(article);
-    // if(article == null) res.redirect('/');
-    // res.render("articles/show", {article: article});
+router.get("/:slug", async (req, res) => {
+    // try {
+    //     const article = await Article.findOne({slug: req.params.slug}).populate("comments").sort({createdAt: 'desc'});
+    //     const comment = {username: "", email: "", comment: ""}
+    //     res.render("articles/show", { article: article, comment: comment });
+    // } catch (e) {
+    //     console.log(e.message);
+    //     res.redirect("back");
+    // }
+    
     //Find the article with provided ID
     Article.findOne({ slug: req.params.slug }).populate('comments').exec(function(err, foundArticle){
         if(err){
@@ -40,7 +81,12 @@ router.get("/:slug", function(req, res){
         } else {
             //render show template with that campground
             //console.log(foundArticle);
-            res.render("articles/show", {article: foundArticle});
+            comment = {
+                username: "",
+                email: "",
+                comment: ""
+            }
+            res.render("articles/show", {article: foundArticle, comment: comment});
         }
     });
 });
@@ -52,30 +98,58 @@ router.get("/:id/edit", async (req, res) => {
 });
 
 // Update article
-router.put("/:id", async (req, res, next) => {
+router.put("/:id",upload.single('image'), async (req, res, next) => {
     req.article = await Article.findById(req.params.id);
     next();
-}, saveArticleAndRedirect('edit'));
+}, saveArticleAndRedirect("edit"));
 
 // destroy/delete an article
 router.delete("/:id", async (req, res) => {
-    await  Article.findByIdAndDelete(req.params.id);
-    res.redirect('/articles');
+    await Article.findById(req.params.id, async (err, article) => {
+        if(err){
+            console.log(e.message);
+            return res.redirect("/article");
+        }
+        try {
+            await cloudinary.uploader.destroy(article.imageId);
+            article.remove();
+            res.redirect("/articles");
+        } catch (e) {
+            console.log(e.message);
+            res.redirect("/articles");
+        }
+    });
 });
 
 function saveArticleAndRedirect(path){
     return async (req, res) => {
-        let article = req.article;
+        var article = req.article;
+        if( path == "edit" && req.file){
+           await cloudinary.uploader.destroy(article.imageId);
+        }
+        try {
+            var result = await cloudinary.uploader.upload(req.file.pathe);
+            // add cloudinary url for the image to the campground object under image property
+            article.image = result.secure_url;
+            // add image's public_id to campground object
+            article.imageId = result.public_id;
             article.title = req.body.title;
             article.caption = req.body.caption;
             article.content = req.body.content;
-       try {
-        article = await article.save();
-        res.redirect("/articles/" + article.slug);
-       } catch (e) {
-           console.log(e);
+        } catch (e) {
+            console.log(e.message);
+            //res.redirect("back");
             res.render("articles/" + path, {article: article});
-       }
+        }
+        
+        console.log(article);
+        try {
+            article = await article.save();
+            res.redirect("/articles/" + article.slug);
+       } catch (e) {
+            console.log(e);
+            res.render("articles/" + path, {article: article});
+       } 
     }
 }
 

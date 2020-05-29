@@ -83,14 +83,34 @@ main section .blog-comments .comment-form .form-input input, textarea{
     display: none;
 }
 
+main section .blog-comments .show-btn{
+    padding: .5rem 1rem;
+    color: white;
+    outline: none;
+    border: 2px solid white;
+    cursor: pointer;
+}
+
 main section .blog-comments .comment-form .comment-btn{
     padding: .5rem 1rem;
     background: #449d44;
     color: white;
     outline: none;
     border: 2px solid white;
+    cursor: pointer;
 }
 
+.edit-btn{
+    background: orange !important;
+}
+
+.delete-btn{
+    background: #e44040;
+}
+
+.delete-form{
+    display: inline-block;
+}
 main section .blog-comments .comment{
     margin: 1rem 0rem;
     padding: .3rem .5rem;

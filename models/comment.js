@@ -2,7 +2,8 @@ var mongoose = require("mongoose");
 
 var commentSchema = mongoose.Schema({
     comment: {
-        type: String
+        type: String, 
+        required: true
     },
     createdAt: {
         type: Date,
@@ -12,7 +13,8 @@ var commentSchema = mongoose.Schema({
         type: String
     },
     username: {
-        type: String
+        type: String,
+        required: true
     }
 });
 

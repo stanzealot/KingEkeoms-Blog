@@ -18,13 +18,17 @@
   },
   "homepage": "https://github.com/trinityimma/KingEkeoms-Blog#readme",
   "dependencies": {
+    "cloudinary": "^1.21.0",
     "dompurify": "^2.0.11",
+    "dotenv": "^8.2.0",
     "ejs": "^3.0.2",
     "express": "^4.17.1",
     "jsdom": "^16.2.2",
     "marked": "^1.0.0",
     "method-override": "^3.0.0",
+    "moment": "^2.24.0",
     "mongoose": "^5.9.10",
+    "multer": "^1.4.2",
     "slugify": "^1.4.0"
   }
 }
