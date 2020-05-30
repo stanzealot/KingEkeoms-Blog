@@ -49,7 +49,7 @@
     font-family: var(--Sanchez);
 }
 
-.nav .nav-items .active, .nav .nav-items .nav-link:hover{
+.nav .nav-menu .nav-items div .active, .nav .nav-items .nav-link:hover{
      background-color: var(--midnight);
      color: var(--white);
 }

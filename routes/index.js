@@ -3,7 +3,7 @@ var router = express.Router();
 
 // root route
 router.get("/", function(req,res){
-    res.render("landing");
+    res.render("landing", {page: 'home'});
 });
 
 router.get("/about", function(req,res){
@@ -11,7 +11,8 @@ router.get("/about", function(req,res){
 });
 
 router.get("/contact", function(req, res){
-    res.send("This will be contact page");
+    res.render("contact", {page: 'contact'});
+    // res.send("This will be contact page");
 });
 
 module.exports = router;
