@@ -7,7 +7,7 @@
     min-height: 9vh;
     overflow: hidden;
     transition: height 1s ease-in-out;
-    border-bottom: .5px solid var(--midnight);
+    border-bottom: .5px solid var(--golden);
 }
 
 .nav .nav-menu{
@@ -50,7 +50,7 @@
 }
 
 .nav .nav-menu .nav-items div .active, .nav .nav-items .nav-link:hover{
-     background-color: var(--midnight);
+     background-color: var(--golden);
      color: var(--white);
 }
 
