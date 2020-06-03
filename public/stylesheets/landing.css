@@ -25,7 +25,7 @@
     margin: 1.8rem;
     font-size: 1.2rem;
     letter-spacing: .1rem;
-    background: var(--armor);
+    background: var(--golden);
 }
 
 .landing-header .btn:hover{

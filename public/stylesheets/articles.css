@@ -11,7 +11,7 @@ main .title{
     line-height: 60px;
     letter-spacing: .3rem;
     font-size: 1rem;
-    background: var(--olive-drab);
+    background: var(--golden);
     text-transform: uppercase;
 }
 
@@ -99,7 +99,7 @@ main .post-content .post-title h2{
     border-radius: 0;
     padding: .7rem 1.5rem;
     margin-top: 1rem;
-    background: var(--olive-drab);
+    background: var(--golden);
 }
 
 hr{

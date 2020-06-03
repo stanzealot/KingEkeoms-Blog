@@ -7,7 +7,7 @@
     min-height: 9vh;
     overflow: hidden;
     transition: height 1s ease-in-out;
-    border-bottom: .5px solid var(--golden);
+    border-bottom: 3px solid var(--golden);
 }
 
 .nav .nav-menu{
@@ -66,6 +66,9 @@
     font-size: 1.6rem;
     font-family: var(--Arvo);
     font-weight: 700;
+}
+.nav .nav-brand span{
+    color: var(--golden);
 }
 
 .nav .social{
