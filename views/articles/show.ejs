@@ -46,11 +46,11 @@
                             <form action="/articles/<%= article.slug %>/comments" method="POST">
                                 <div class="form-input"> 
                                     <label for="name" >Name <span id="required">*</span> </label><br>
-                                    <input id="name" type="text" name="username" required value="<%= article.username %>">
+                                    <input id="name" type="text" name="username" required value="<%= comment.username %>">
                                 </div>
                                 <div class="form-input">
                                     <label for="email">Email (optional)</label><br>
-                                    <input id="email" type="email" name="email" value="<%= article.email %>">
+                                    <input id="email" type="email" name="email" value="<%= comment.email %>">
                                 </div>
                                 <div class="form-input">
                                     <label for="comment">Comment <span id="required">*</span> </label><br>

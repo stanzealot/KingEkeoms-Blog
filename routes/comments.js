@@ -21,7 +21,7 @@ router.post("/", function(req, res) {
             try {
                 //save comment
                     comment = await comment.save();
-                    console.log(comment);
+                    // console.log(comment);
                     //save comment to article
                     article.comments.push(comment);
                     article.save();
@@ -37,18 +37,23 @@ router.post("/", function(req, res) {
 
 // edit comment route
 router.get("/:comment_id/edit", function(req, res){
-    console.log(req.params);
     Article.findOne({slug: req.params.articleSlug}).populate('comments').exec((err, foundArticle) => {
         if(err){
             console.log(err);
         } else{
-            try {
-                let comment = Comment.findById(req.params.comment_id);
-                //console.log(comment);
-                res.render("articles/show", { article: foundArticle, comment: comment } );
-            } catch (e) {
-                console.log(e.message);
-            }  
+            foundArticle.comments.forEach(function(comment){
+                console.log(comment);
+                if(comment.id == req.params.comment_id){
+                    res.render("articles/show", { article: foundArticle, comment: comment } );
+                }
+            });
+            // try {
+            //     let comment = Comment.findById(req.params.comment_id);
+            //     console.log(comment);
+            //     res.render("articles/show", { article: foundArticle, comment: comment } );
+            // } catch (e) {
+            //     console.log(e.message);
+            // });  
         }
     });  
 });

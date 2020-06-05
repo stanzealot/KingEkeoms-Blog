@@ -120,6 +120,7 @@ router.put("/:id", upload.single('image'), (req, res) => {
           console.log(err.message);
           res.redirect("back");
       } else {
+          console.log(req.file);
           if (req.file) {
             try {
                 await cloudinary.v2.uploader.destroy(campground.imageId);
