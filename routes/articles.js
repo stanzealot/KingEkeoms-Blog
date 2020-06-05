@@ -18,7 +18,7 @@ var imageFilter = function (req, file, cb) {
 };
 var upload = multer({ storage: storage, fileFilter: imageFilter})
 
-var cloudinary = require('cloudinary').v2;
+var cloudinary = require('cloudinary');
 cloudinary.config({ 
   cloud_name: 'immaculata-mary', 
   api_key: process.env.CLOUDINARY_API_KEY, 
@@ -42,27 +42,37 @@ router.get("/new", function(req,res){
 });
 
 // add new post to db
-router.post("/", upload.single('image'),  (req, res, next) => {
-    req.article = new Article();
-    next();
-}, saveArticleAndRedirect("new"));
+// router.post("/", upload.single('image'),  (req, res, next) => {
+//     req.article = new Article();
+//     next();
+// }, saveArticleAndRedirect("new"));
 
-// router.post("/", upload.single("image"), async (req, res)=>{
-//     try {
-//         var result = await cloudinary.uploader.upload(req.file.pathe);
-//         // add cloudinary url for the image to the campground object under image property
-//         article.image = result.secure_url;
-//         // add image's public_id to campground object
-//         article.imageId = result.public_id;
-//         article.title = req.body.title;
-//         article.caption = req.body.caption;
-//         article.content = req.body.content;
-//     } catch (e) {
-//         console.log(e.message);
-//         //res.redirect("back");
-//         res.render("articles/" + path, {article: article});
-//     }
-// })
+
+router.post("/", upload.single('image'), async (req, res) => {
+    var article =  new Article();
+    await cloudinary.v2.uploader.upload(req.file.path, async (err, result) =>  {
+      if(err) {
+          console.log(err.message);
+        // req.flash('error', err.message);
+        return res.redirect('back');
+      } 
+      // add cloudinary url for the image to the campground object under image property
+        article.image = result.secure_url;
+         // add image's public_id to campground object
+        article.imageId = result.public_id;
+        article.title = req.body.title;
+        article.caption = req.body.caption;
+        article.content = req.body.content;
+        Article.create(article, (err, article) => {
+          if (err) {
+            console.log(err.message);
+            return res.redirect('back');
+          }
+          res.redirect('/articles' + article.slug);
+        });
+      });
+  });
+
 // Show article route
 router.get("/:slug", async (req, res) => {
     // try {
@@ -98,10 +108,40 @@ router.get("/:id/edit", async (req, res) => {
 });
 
 // Update article
-router.put("/:id",upload.single('image'), async (req, res, next) => {
-    req.article = await Article.findById(req.params.id);
-    next();
-}, saveArticleAndRedirect("edit"));
+// router.put("/:id",upload.single('image'), async (req, res, next) => {
+//     req.article = await Article.findById(req.params.id);
+//     next();
+// }, saveArticleAndRedirect("edit"));
+
+router.put("/:id", upload.single('image'), (req, res) => {
+    Article.findById(req.params.id, async (err, article) => {
+      if(err){
+        //   req.flash("error", err.message);
+          console.log(err.message);
+          res.redirect("back");
+      } else {
+          if (req.file) {
+            try {
+                await cloudinary.v2.uploader.destroy(campground.imageId);
+                var result = await cloudinary.v2.uploader.upload(req.file.path);
+                article.imageId = result.public_id;
+                article.image = result.secure_url;
+            } catch(err) {
+                console.log(err.message);
+                // req.flash("error", err.message);
+                return res.redirect("back"); 
+            }
+        }
+          article.title = req.body.title;
+          article.caption = req.body.caption;
+          article.content = req.body.content;
+          article.save();
+        //   req.flash("success","Successfully Updated!");
+          res.redirect("/articles"); //+ article.slug//);
+      }
+  });
+    // });
+  });
 
 // destroy/delete an article
 router.delete("/:id", async (req, res) => {
@@ -111,7 +151,7 @@ router.delete("/:id", async (req, res) => {
             return res.redirect("/article");
         }
         try {
-            await cloudinary.uploader.destroy(article.imageId);
+            await cloudinary.v2.uploader.destroy(article.imageId);
             article.remove();
             res.redirect("/articles");
         } catch (e) {

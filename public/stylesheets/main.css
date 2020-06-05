@@ -77,7 +77,7 @@ p{
 .btn{
     border: none;
     border-radius: 2rem;
-    padding: 1rem 3rem;
+    padding: 1rem 2rem;
     font-size: 1rem;
     font-family: var(--Arvo);
     cursor: pointer;
@@ -168,7 +168,7 @@ footer.footer .move-up{
 }
 
 footer.footer .move-up span{
-    color: var(--olive-drab);
+    color: var(--golden);
 }
 
 footer.footer .move-up span:hover{

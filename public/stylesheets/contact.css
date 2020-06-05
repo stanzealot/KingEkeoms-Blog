@@ -4,7 +4,7 @@
 }
 
 body{
-    background: #4f4115;
+    /* background: #4f4115; */
     font-size:  14px;
     font-family: 'Poppins', sans-serif;
 }
@@ -47,11 +47,11 @@ input{
     padding: 5px;
 }
 h1{
-    color: white;
+    /* color: white; */
     margin-bottom: 10px;
 }
 .contact-container p{
-    color: white;
+    /* color: white; */
     margin-bottom: 40px;
 }
 

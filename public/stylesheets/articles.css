@@ -28,8 +28,14 @@ main .site-content .about-me-image > div{
 }
 
 main .site-content .about-me-image .image-background  img {
-    width: 100%;
-    /* height: 70%; */
+    /* position: relative; */
+    /* width: 100%; */
+    height: 300px;
+    width: 300px;
+    border-radius: 50%;
+    display: block;
+    object-fit: cover;
+    border: 5px solid var(--golden-2);    /* height: 70%; */
 }
 
 
@@ -58,7 +64,7 @@ main .site-content .post-content >  .post-image, .post-title, .post-description{
 }
 
 main .site-content .post-content > .post-image .post-info{
-    background: var(--olive-drab);
+    background: var(--golden);
     padding: .8rem 1.5rem;
     position: absolute;
     bottom: 0%;
@@ -72,6 +78,7 @@ main .site-content > .post-image > div{
 
 main .site-content .post-content > .post-image .img{
     width: 100%;
+    height: 500px;
     transition: all 1s ease;
 }
 
@@ -96,8 +103,7 @@ main .post-content .post-title h2{
 
 .site-content .post-content .post-description .post-btn{
     text-align: center;
-    border-radius: 0;
-    padding: .7rem 1.5rem;
+    letter-spacing: .1rem;
     margin-top: 1rem;
     background: var(--golden);
 }
