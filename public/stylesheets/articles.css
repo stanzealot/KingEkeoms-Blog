@@ -25,6 +25,11 @@ main .about-me-content{
 
 main .site-content .about-me-image > div{
     overflow: hidden;
+ /*i modified these: these only centers the image wethin the div and not the whole div..*/
+    padding-top: 0.5rem;  
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 main .site-content .about-me-image .image-background  img {
